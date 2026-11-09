@@ -1,0 +1,1 @@
+![CI status](https://github.com/lolgaaleksandrovna93-hash/1854/actions/workflows/gradle.yml/badge.svg)
