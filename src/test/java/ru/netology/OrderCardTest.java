@@ -31,7 +31,7 @@ public class OrderCardTest {
         System.out.println("[SETUP] Target URL: " + appUrl);
 
         // Если путь к драйверу задан через переменную окружения — используем его,
-        // иначе полагаемся на Selenium Manager / WebDriverManager
+        // иначе полагаемся на Selenium Manager
         String driverPath = System.getenv("WEBDRIVER_CHROME_DRIVER");
         if (driverPath != null && !driverPath.isEmpty()) {
             System.setProperty("webdriver.chrome.driver", driverPath);
@@ -41,11 +41,11 @@ public class OrderCardTest {
         }
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");                               // headless для CI
+        options.addArguments("--headless=new");                               // обязательно для CI
         options.addArguments("--no-sandbox");                                 // для контейнеров
-        options.addArguments("--disable-dev-shm-usage");                      // лимиты памяти в CI
+        options.addArguments("--disable-dev-shm-usage");                      // обход лимитов памяти
         options.addArguments("--window-size=1920,1080");                      // иначе в headless мобильная вёрстка
-        options.addArguments("--disable-blink-features=AutomationControlled"); // маскируем автоматизацию
+        options.addArguments("--disable-blink-features=AutomationControlled");
 
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -60,7 +60,7 @@ public class OrderCardTest {
         }
     }
 
-    // ---------- Вспомогательные методы (общие для всех тестов) ----------
+    // ---------- Вспомогательные методы ----------
 
     private WebElement openPage() {
         System.out.println("[TEST] Opening page: " + appUrl);
